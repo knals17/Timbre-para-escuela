@@ -408,16 +408,19 @@ String DayW(int Nday) {
 }
 
 void timerSet() {
+  byte sttng = 1;
   DateTime now = RTC.now();
   lcd.clear();
   lcd.home();
   lcd.print(" Time and date  ");
   lcd.setCursor ( 0, 1 );
   lcd.print("    settings    ");
-  delay(2000);
+  delay(3000);
+
   setYear = now.year();
   setMonth = now.month();
   setDay = now.day();
+
   setHour = now.hour();
   setMinutes = now.minute();
   setSeconds = now.second();
@@ -446,23 +449,257 @@ void timerSet() {
   } else {
     lcd.print(setSeconds);
   }
-
+  lcd.clear();
   byte page = 0;
-  
-  switch (page) {
-  case 0:
-    // statements
-    break;
-  case 1:
-    // statements
-    break;
-}
+
+  while (sttng == 1) {
+    switch (page) {
+      case 0:
+
+        lcd.home ();
+        lcd.print("    Set hour    ");
+        lcd.setCursor ( 4, 0 );
+        if (setHour < 10) {
+          lcd.print("0");
+          lcd.print(setHour); // dayOfTheWeek()
+        } else {
+          lcd.print(setHour); // dayOfTheWeek()
+        }
+        lcd.print(":");
+        if (setMinutes < 10) {
+          lcd.print("0");
+          lcd.print(setMinutes);
+        } else {
+          lcd.print(setMinutes);
+        };
+        lcd.print(":");
+        if (setSeconds < 10) {
+          lcd.print("0");
+          lcd.print(setSeconds);
+        } else {
+          lcd.print(setSeconds);
+        }
+
+        if (digitalRead(up) == HIGH) {
+          setHour++;
+          if (setHour > 23) {
+            setHour = 0;
+          }
+        }
+        if (digitalRead(down) == HIGH) {
+          setHour--;
+          if (setHour == 255) {
+            setHour = 23;
+          }
+        }
+        if (digitalRead(next) == HIGH) {
+          screen = 1;
+          lcd.clear();
+        }
+
+        if (digitalRead(back) == HIGH) {
+          sttng = 0;
+          lcd.clear();
+        }
+        break;
+
+      case 1:
+        lcd.home ();
+        lcd.print("  Set minutes   ");
+        lcd.setCursor ( 4, 0 );
+        if (setHour < 10) {
+          lcd.print("0");
+          lcd.print(setHour); // dayOfTheWeek()
+        } else {
+          lcd.print(setHour); // dayOfTheWeek()
+        }
+        lcd.print(":");
+        if (setMinutes < 10) {
+          lcd.print("0");
+          lcd.print(setMinutes);
+        } else {
+          lcd.print(setMinutes);
+        };
+        lcd.print(":");
+        if (setSeconds < 10) {
+          lcd.print("0");
+          lcd.print(setSeconds);
+        } else {
+          lcd.print(setSeconds);
+        }
+
+        if (digitalRead(up) == HIGH) {
+          setMinutes++;
+          if (setMinutes > 59) {
+            setMinutes = 0;
+          }
+        }
+        if (digitalRead(down) == HIGH) {
+          setMinutes--;
+          if (setMinutes == 255) {
+            setMinutes = 59;
+          }
+        }
+        if (digitalRead(next) == HIGH) {
+          screen = 2;
+          lcd.clear();
+        }
+
+        if (digitalRead(back) == HIGH) {
+          screen = 0;
+          lcd.clear();
+        }
+        break;
+
+      case 2:
+        lcd.home ();
+        lcd.print("     Set day    ");
+        lcd.setCursor ( 4, 0 );
+        if (setDay < 10) {
+          lcd.print("0");
+          lcd.print(setDay); // dayOfTheWeek()
+        } else {
+          lcd.print(setDay); // dayOfTheWeek()
+        }
+        lcd.print("/");
+        if (setMonth < 10) {
+          lcd.print("0");
+          lcd.print(setMonth);
+        } else {
+          lcd.print(setMonth);
+        };
+        lcd.print("/");
+        lcd.print(setYear);
+
+
+        if (digitalRead(up) == HIGH) {
+          setDay++;
+          if (setDay > 31) {
+            setDay = 1;
+          }
+        }
+        if (digitalRead(down) == HIGH) {
+          setDay--;
+          if (setDay == 0) {
+            setDay = 31;
+          }
+        }
+        if (digitalRead(next) == HIGH) {
+          screen = 3;
+          lcd.clear();
+        }
+
+        if (digitalRead(back) == HIGH) {
+          screen = 1;
+          lcd.clear();
+        }
+        break;
+
+      case 3:
+        lcd.home ();
+        lcd.print("    Set month   ");
+        lcd.setCursor ( 4, 0 );
+        if (setDay < 10) {
+          lcd.print("0");
+          lcd.print(setDay); // dayOfTheWeek()
+        } else {
+          lcd.print(setDay); // dayOfTheWeek()
+        }
+        lcd.print("/");
+        if (setMonth < 10) {
+          lcd.print("0");
+          lcd.print(setMonth);
+        } else {
+          lcd.print(setMonth);
+        };
+        lcd.print("/");
+        lcd.print(setYear);
+
+
+        if (digitalRead(up) == HIGH) {
+          setMonth++;
+          if (setMonth > 12) {
+            setMonth = 1;
+          }
+        }
+        if (digitalRead(down) == HIGH) {
+          setMonth--;
+          if (setMonth == 0) {
+            setMonth = 12;
+          }
+        }
+        if (digitalRead(next) == HIGH) {
+          screen = 4;
+          lcd.clear();
+        }
+
+        if (digitalRead(back) == HIGH) {
+          screen = 2;
+          lcd.clear();
+        }
+        break;
+
+      case 4:
+        lcd.home ();
+        lcd.print("    Set year    ");
+        lcd.setCursor ( 4, 0 );
+        if (setDay < 10) {
+          lcd.print("0");
+          lcd.print(setDay); // dayOfTheWeek()
+        } else {
+          lcd.print(setDay); // dayOfTheWeek()
+        }
+        lcd.print("/");
+        if (setMonth < 10) {
+          lcd.print("0");
+          lcd.print(setMonth);
+        } else {
+          lcd.print(setMonth);
+        };
+        lcd.print("/");
+        lcd.print(setYear);
+
+
+        if (digitalRead(up) == HIGH) {
+          setYear++;
+          if (setYear > 3000) {
+            setYear = 2018;
+          }
+        }
+        if (digitalRead(down) == HIGH) {
+          setYear--;
+          if (setYear == 2017) {
+            setYear = 2018;
+          }
+        }
+        if (digitalRead(next) == HIGH) {
+          screen = 5;
+          lcd.clear();
+        }
+
+        if (digitalRead(back) == HIGH) {
+          screen = 3;
+          lcd.clear();
+        }
+        break;
+
+      case 5:
+        lcd.home ();
+        lcd.print("  Saving data   ");
+        RTC.adjust(DateTime(setYear, setMonth, setDay, setHour, setMinutes, 00));
+        delay(3000);
+        sttng = 0;
+        lcd.clear();
+        break;
+    }
+  }
+
   /*lcd.setCursor ( 1, 1 );
-  lcd.print(setDay);
-  lcd.print("/");
-  lcd.print(setMonth);
-  lcd.print("/");
-  lcd.print(setYear);*/
-  
+    lcd.print(setDay);
+    lcd.print("/");
+    lcd.print(setMonth);
+    lcd.print("/");
+    lcd.print(setYear);*/
+
 }
 
