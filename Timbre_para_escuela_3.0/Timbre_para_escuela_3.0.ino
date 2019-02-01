@@ -458,7 +458,7 @@ void timerSet() {
 
         lcd.home ();
         lcd.print("    Set hour    ");
-        lcd.setCursor ( 4, 0 );
+        lcd.setCursor ( 4, 1 );
         if (setHour < 10) {
           lcd.print("0");
           lcd.print(setHour); // dayOfTheWeek()
@@ -481,23 +481,27 @@ void timerSet() {
         }
 
         if (digitalRead(up) == HIGH) {
+          delay(300);
           setHour++;
           if (setHour > 23) {
             setHour = 0;
           }
         }
         if (digitalRead(down) == HIGH) {
+          delay(300);
           setHour--;
           if (setHour == 255) {
             setHour = 23;
           }
         }
         if (digitalRead(next) == HIGH) {
-          screen = 1;
+          delay(300);
+          page = 1;
           lcd.clear();
         }
 
         if (digitalRead(back) == HIGH) {
+          delay(300);
           sttng = 0;
           lcd.clear();
         }
@@ -506,7 +510,7 @@ void timerSet() {
       case 1:
         lcd.home ();
         lcd.print("  Set minutes   ");
-        lcd.setCursor ( 4, 0 );
+        lcd.setCursor ( 4, 1 );
         if (setHour < 10) {
           lcd.print("0");
           lcd.print(setHour); // dayOfTheWeek()
@@ -529,24 +533,28 @@ void timerSet() {
         }
 
         if (digitalRead(up) == HIGH) {
+          delay(300);
           setMinutes++;
           if (setMinutes > 59) {
             setMinutes = 0;
           }
         }
         if (digitalRead(down) == HIGH) {
+          delay(300);
           setMinutes--;
           if (setMinutes == 255) {
             setMinutes = 59;
           }
         }
         if (digitalRead(next) == HIGH) {
-          screen = 2;
+          delay(300);
+          page = 2;
           lcd.clear();
         }
 
         if (digitalRead(back) == HIGH) {
-          screen = 0;
+          delay(300);
+          page = 0;
           lcd.clear();
         }
         break;
@@ -554,7 +562,7 @@ void timerSet() {
       case 2:
         lcd.home ();
         lcd.print("     Set day    ");
-        lcd.setCursor ( 4, 0 );
+        lcd.setCursor ( 4, 1 );
         if (setDay < 10) {
           lcd.print("0");
           lcd.print(setDay); // dayOfTheWeek()
@@ -573,24 +581,28 @@ void timerSet() {
 
 
         if (digitalRead(up) == HIGH) {
+          delay(300);
           setDay++;
           if (setDay > 31) {
             setDay = 1;
           }
         }
         if (digitalRead(down) == HIGH) {
+          delay(300);
           setDay--;
           if (setDay == 0) {
             setDay = 31;
           }
         }
         if (digitalRead(next) == HIGH) {
-          screen = 3;
+          delay(300);
+          page = 3;
           lcd.clear();
         }
 
         if (digitalRead(back) == HIGH) {
-          screen = 1;
+          delay(300);
+          page = 1;
           lcd.clear();
         }
         break;
@@ -598,7 +610,7 @@ void timerSet() {
       case 3:
         lcd.home ();
         lcd.print("    Set month   ");
-        lcd.setCursor ( 4, 0 );
+        lcd.setCursor ( 4, 1 );
         if (setDay < 10) {
           lcd.print("0");
           lcd.print(setDay); // dayOfTheWeek()
@@ -617,24 +629,28 @@ void timerSet() {
 
 
         if (digitalRead(up) == HIGH) {
+          delay(300);
           setMonth++;
           if (setMonth > 12) {
             setMonth = 1;
           }
         }
         if (digitalRead(down) == HIGH) {
+          delay(300);
           setMonth--;
           if (setMonth == 0) {
             setMonth = 12;
           }
         }
         if (digitalRead(next) == HIGH) {
-          screen = 4;
+          delay(300);
+          page = 4;
           lcd.clear();
         }
 
         if (digitalRead(back) == HIGH) {
-          screen = 2;
+          delay(300);
+          page = 2;
           lcd.clear();
         }
         break;
@@ -642,7 +658,7 @@ void timerSet() {
       case 4:
         lcd.home ();
         lcd.print("    Set year    ");
-        lcd.setCursor ( 4, 0 );
+        lcd.setCursor ( 4, 1 );
         if (setDay < 10) {
           lcd.print("0");
           lcd.print(setDay); // dayOfTheWeek()
@@ -661,24 +677,28 @@ void timerSet() {
 
 
         if (digitalRead(up) == HIGH) {
+          delay(300);
           setYear++;
           if (setYear > 3000) {
             setYear = 2018;
           }
         }
         if (digitalRead(down) == HIGH) {
+          delay(300);
           setYear--;
           if (setYear == 2017) {
             setYear = 2018;
           }
         }
         if (digitalRead(next) == HIGH) {
-          screen = 5;
+          delay(300);
+          page = 5;
           lcd.clear();
         }
 
         if (digitalRead(back) == HIGH) {
-          screen = 3;
+          delay(300);
+          page = 3;
           lcd.clear();
         }
         break;
